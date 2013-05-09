@@ -9,7 +9,7 @@ package model;
  */
 
 public class Album {
-	private String titre, auteur, serie, genre, synopsis, commentaire;
+	private String titre, auteur, editeur, serie, genre, synopsis, commentaire;
 	private int noserie, note, nbplanches, prix;
 	// TODO ajouter l'illustration
 	/*il faut trouver une hiérarchie de fichiers pour stocker les illustrations, dans ce cas, 
@@ -22,7 +22,7 @@ public class Album {
 	}
 	
 	/**
-	 * Construire un Album en donnant juste le titre et l'auteur, constructeur minimal
+	 * Construit un Album en donnant juste le titre et l'auteur, constructeur minimal
 	 * Les paramètres ne peuvent-être null ou vides
 	 * @param titre
 	 * @param auteur
@@ -40,7 +40,7 @@ public class Album {
 	}
 
 	/**
-	 * Contruire un Album en donnant le titre, l'auteur, la série et le numéro
+	 * Contruit un Album en donnant le titre, l'auteur, la série et le numéro
 	 * si la série n'est pas vide, le numéro ne peut pas être zéro
 	 * @param titre
 	 * @param auteur
@@ -63,11 +63,12 @@ public class Album {
 	}
 	
 	/**
-	 * Construire un Album en fournissant tous les paramètres
+	 * Construit un Album en fournissant tous les paramètres
 	 * (cf autres constructeurs)
 	 * Si les chaines sont nulls, elles seront remplacées par des chaines vides 
 	 * @param titre
 	 * @param auteur
+	 * @param editeur
 	 * @param serie
 	 * @param genre
 	 * @param synopsis
@@ -78,10 +79,11 @@ public class Album {
 	 * @param prix
 	 * @throws IllegalAccessException
 	 */
-	public Album(String titre, String auteur, String serie, String genre,
-			String synopsis, String commentaire, int noserie, int note,
-			int nbplanches, int prix) throws IllegalAccessException {
+	public Album(String titre, String auteur, String editeur, String serie, 
+			String genre, String synopsis, String commentaire, int noserie, 
+			int note, int nbplanches, int prix) throws IllegalAccessException {
 		this(titre, auteur, serie, noserie);
+		this.editeur = nonNull(editeur);
 		this.genre = nonNull(genre);
 		this.synopsis = nonNull(synopsis);
 		this.commentaire = nonNull(commentaire);
@@ -93,11 +95,11 @@ public class Album {
 	
 	//----Static
 	/**
-	 * Garanti de ne pas avoir de String null, renvoie une String vide
+	 * Garantit de ne pas avoir de String null, renvoie une String vide
 	 * @param s
 	 * @return
 	 */
-	public static String nonNull(String s){
+	public String nonNull(String s){
 		if(s==null)
 			return new String();
 		else
@@ -107,9 +109,23 @@ public class Album {
 	
 
 	//----Getters
+	public String getTitre() {
+		return titre;
+	}
+
+	public String getAuteur() {
+		return auteur;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+	
 	public String getSerie(){
 		return serie;
 	}
 	//----Fin getters
+
+	
 
 }
