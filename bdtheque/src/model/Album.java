@@ -52,7 +52,7 @@ public class Album {
 	 * @param dessinateur
 	 * @param serie
 	 * @param noserie
-	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
 	public Album(String titre, String scenariste, String dessinateur, String serie, int noserie) 
 			throws IllegalArgumentException {
@@ -86,11 +86,11 @@ public class Album {
 	 * @param note
 	 * @param nbplanches
 	 * @param prix
-	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
 	public Album(String titre, String scenariste, String dessinateur, String coloriste, 
 			String editeur, String serie, String genre, String synopsis, String commentaire, 
-			int noserie, int note, int nbplanches, int prix) throws IllegalAccessException {
+			int noserie, int note, int nbplanches, int prix) {
 		this(titre, scenariste, dessinateur, serie, noserie);
 		this.coloriste = nonNull(coloriste);
 		this.editeur = nonNull(editeur);

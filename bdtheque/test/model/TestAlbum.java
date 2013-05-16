@@ -7,6 +7,7 @@ import org.junit.Test;
 
 public class TestAlbum {
 
+	//---Test constructeurs
 	@Test(expected=IllegalArgumentException.class)
 	public void constr_titreVide(){
 		new Album("","blabla", "bleble");
@@ -43,6 +44,12 @@ public class TestAlbum {
 	@Test(expected=IllegalArgumentException.class)
 	public void constr_serieNoZero() {
 		new Album("bla", "ble", "bli", "blo", 0);
+	}
+	//-- fin test constructeurs
+	
+	@Before
+	public void prep_test_getters() {
+		Album a = new Album("titre", "scenariste", "dessinateur", "coloriste", "editeur", "serie", "genre", "synopsis", "commentaire", 1, 1, 0, 0);
 	}
 	
 	
