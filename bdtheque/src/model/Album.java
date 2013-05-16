@@ -1,5 +1,7 @@
 package model;
 
+import java.util.TreeSet;
+
 /**
  * 
  * @author charlerlin
@@ -42,6 +44,7 @@ public class Album {
 			throw new IllegalArgumentException("Dessinateur vide");
 		else
 			this.dessinateur = dessinateur;
+		coloriste = new String();
 	}
 
 	/**
@@ -111,7 +114,7 @@ public class Album {
 	 */
 	public String nonNull(String s){
 		if(s==null)
-			return new String();
+			return new String("");
 		else
 			return s;
 	}
@@ -133,6 +136,15 @@ public class Album {
 	
 	public String getColoriste(){
 		return coloriste;
+	}
+	
+	public TreeSet<String> getAuteurs(){
+		TreeSet<String> ret = new TreeSet<String>();
+		ret.add(scenariste);
+		ret.add(dessinateur);
+		if(!coloriste.isEmpty())
+			ret.add(coloriste);
+		return ret;
 	}
 
 	public String getGenre() {
@@ -173,5 +185,64 @@ public class Album {
 	//----Fin getters
 
 	
+	
+
+	//-- HashCode & Equals
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((dessinateur == null) ? 0 : dessinateur.hashCode());
+		result = prime * result + noserie;
+		result = prime * result
+				+ ((scenariste == null) ? 0 : scenariste.hashCode());
+		result = prime * result + ((serie == null) ? 0 : serie.hashCode());
+		result = prime * result + ((titre == null) ? 0 : titre.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Album other = (Album) obj;
+		if (dessinateur == null) {
+			if (other.dessinateur != null)
+				return false;
+		} else if (!dessinateur.equals(other.dessinateur))
+			return false;
+		if (noserie != other.noserie)
+			return false;
+		if (scenariste == null) {
+			if (other.scenariste != null)
+				return false;
+		} else if (!scenariste.equals(other.scenariste))
+			return false;
+		if (serie == null) {
+			if (other.serie != null)
+				return false;
+		} else if (!serie.equals(other.serie))
+			return false;
+		if (titre == null) {
+			if (other.titre != null)
+				return false;
+		} else if (!titre.equals(other.titre))
+			return false;
+		return true;
+	}
+	
+	//-- fin hashcode & equals
 
 }
