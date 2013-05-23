@@ -2,7 +2,6 @@ package model;
 
 import java.util.HashMap;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class BDT {
 	private HashMap<Integer, Album> listeAlbums;
@@ -27,8 +26,10 @@ public class BDT {
 			listeAlbums.put(a.hashCode(), a);
 			gestionIndexAjout(a, "titre");
 			gestionIndexAjout(a, "auteurs");
-			gestionIndexAjout(a, "serie");
-			gestionIndexAjout(a, "genre");
+			if(!a.getSerie().isEmpty())
+				gestionIndexAjout(a, "serie");
+			if(!a.getGenre().isEmpty())
+				gestionIndexAjout(a, "genre");
 			return true;
 		}
 	}
@@ -73,6 +74,29 @@ public class BDT {
 			}
 		}
 	}
+	
+	//-- GETTERS
+	public HashMap<Integer, Album> getListeAlbums(){
+		return listeAlbums;
+	}
+
+	public TreeMap<String, Integer> getListeTitres() {
+		return listeTitres;
+	}
+
+	public TreeMap<String, Integer> getListeSeries() {
+		return listeSeries;
+	}
+
+	public TreeMap<String, Integer> getListeAuteurs() {
+		return listeAuteurs;
+	}
+
+	public TreeMap<String, Integer> getListeGenres() {
+		return listeGenres;
+	}
+	
+	//-- fin getters
 
 
 }

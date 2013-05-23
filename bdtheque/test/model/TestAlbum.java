@@ -49,8 +49,8 @@ public class TestAlbum {
 	}
 	//-- fin test constructeurs
 
-	private Album a, b, c, d, e, f; 
-	private TreeSet<String> forA, forE;
+	private Album a, b, c, d, e, f, g; 
+	private TreeSet<String> forA, forE, forG;
 
 	@Before
 	public void setup_test_equals(){
@@ -67,6 +67,11 @@ public class TestAlbum {
 		forE.add("scenariste");
 		forE.add("dessinateur");
 		forE.add("coloriste");
+		
+		g = new Album("titre", "lememe", "lememe");
+		forG = new TreeSet<String>();
+		forG.add("lememe");
+		
 
 	}
 	@Test
@@ -80,6 +85,7 @@ public class TestAlbum {
 	public void test_getAuteurs(){
 		assertEquals(forA, a.getAuteurs());
 		assertEquals(forE, e.getAuteurs());
+		assertEquals(forG, g.getAuteurs());
 	}
 
 }

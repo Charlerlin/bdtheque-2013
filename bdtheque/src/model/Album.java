@@ -45,6 +45,7 @@ public class Album {
 		else
 			this.dessinateur = dessinateur.trim();
 		coloriste = new String(); //ajout d'un coloriste vide pour la gestion d'index
+		genre = new String(); //ajout d'un genre vide pour le equals
 	}
 
 	/**
