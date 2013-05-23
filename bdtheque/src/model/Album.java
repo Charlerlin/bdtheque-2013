@@ -35,16 +35,16 @@ public class Album {
 		if(titre==null || titre.isEmpty())
 			throw new IllegalArgumentException("Titre vide");
 		else
-			this.titre = titre; 
+			this.titre = titre.trim(); 
 		if(scenariste==null || scenariste.isEmpty())
 			throw new IllegalArgumentException("Scenariste vide");
 		else
-			this.scenariste = scenariste;
+			this.scenariste = scenariste.trim();
 		if(dessinateur==null || dessinateur.isEmpty())
 			throw new IllegalArgumentException("Dessinateur vide");
 		else
-			this.dessinateur = dessinateur;
-		coloriste = new String();
+			this.dessinateur = dessinateur.trim();
+		coloriste = new String(); //ajout d'un coloriste vide pour la gestion d'index
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Album {
 			if(noserie==0)
 				throw new IllegalArgumentException("Numero de série zéro");
 			else{
-				this.serie = serie;
+				this.serie = serie.trim();
 				this.noserie = noserie;
 			}
 		}
@@ -95,11 +95,11 @@ public class Album {
 			String editeur, String serie, String genre, String synopsis, String commentaire, 
 			int noserie, int note, int nbplanches, int prix) {
 		this(titre, scenariste, dessinateur, serie, noserie);
-		this.coloriste = nonNull(coloriste);
-		this.editeur = nonNull(editeur);
-		this.genre = nonNull(genre);
-		this.synopsis = nonNull(synopsis);
-		this.commentaire = nonNull(commentaire);
+		this.coloriste = nonNull(coloriste.trim());
+		this.editeur = nonNull(editeur.trim());
+		this.genre = nonNull(genre.trim());
+		this.synopsis = nonNull(synopsis.trim());
+		this.commentaire = nonNull(commentaire.trim());
 		this.note = note;
 		this.nbplanches = nbplanches;
 		this.prix = prix;

@@ -55,7 +55,7 @@ public class TestAlbum {
 	@Before
 	public void setup_test_equals(){
 		a = new Album("titre", "scenariste", "dessinateur");
-		b = new Album("titre", "scenariste", "dessinateur");
+		b = new Album("titre  ", "scenariste  ", "  dessinateur");
 		c = new Album("titre", "scenariste", "dessinateur", "serie", 1);
 		d = new Album("titre", "scenariste", "dessinateur", "serie", 1);
 		e = new Album("titre", "scenariste", "dessinateur", "coloriste", "editeur", "serie", "genre", "synopsis", "commentaire", 1, 5, 30, 15);
