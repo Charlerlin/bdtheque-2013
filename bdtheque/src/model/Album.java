@@ -222,24 +222,24 @@ public class Album {
 		if (dessinateur == null) {
 			if (other.dessinateur != null)
 				return false;
-		} else if (!dessinateur.equals(other.dessinateur))
+		} else if (!dessinateur.toLowerCase().equals(other.dessinateur.toLowerCase()))
 			return false;
 		if (noserie != other.noserie)
 			return false;
 		if (scenariste == null) {
 			if (other.scenariste != null)
 				return false;
-		} else if (!scenariste.equals(other.scenariste))
+		} else if (!scenariste.toLowerCase().equals(other.scenariste.toLowerCase()))
 			return false;
 		if (serie == null) {
 			if (other.serie != null)
 				return false;
-		} else if (!serie.equals(other.serie))
+		} else if (!serie.toLowerCase().equals(other.serie.toLowerCase()))
 			return false;
 		if (titre == null) {
 			if (other.titre != null)
 				return false;
-		} else if (!titre.equals(other.titre))
+		} else if (!titre.toLowerCase().equals(other.titre.toLowerCase()))
 			return false;
 		return true;
 	}

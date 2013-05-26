@@ -49,7 +49,7 @@ public class TestAlbum {
 	}
 	//-- fin test constructeurs
 
-	private Album a, b, c, d, e, f, g; 
+	private Album a, b, c, d, e, f, g, h, i, j, k, l, m; 
 	private TreeSet<String> forA, forE, forG;
 
 	@Before
@@ -72,6 +72,14 @@ public class TestAlbum {
 		forG = new TreeSet<String>();
 		forG.add("lememe");
 		
+		h = new Album("TiTre", "SceNAriste", "DESSinateur");
+		i = new Album("titre", "scenariste", "dessinateur");
+		
+		j = new Album("TITRE", "SCENARISTE", "DESSINATEUR", "SERIE", 1);
+		k = new Album("titre", "scenariste", "dessinateur", "serie", 1);
+		
+		l = new Album("TITRE", "SCENARiste", "DESSinateur", "COLOriste", "EDIteur", "SERie", "GENre", "SYNOPsis", "COMMentaire", 1, 4, 29, 14);
+		m = new Album("titre", "scenariste", "dessinateur", "coloriste1", "editeur2", "serie", "genre2", "synopsis2", "commentaire2", 1, 4, 29, 14);
 
 	}
 	@Test
@@ -86,6 +94,12 @@ public class TestAlbum {
 		assertEquals(forA, a.getAuteurs());
 		assertEquals(forE, e.getAuteurs());
 		assertEquals(forG, g.getAuteurs());
+	}
+	@Test
+	public void test_lowercase(){
+		assertTrue(h.equals(i));
+		assertTrue(j.equals(k));
+		assertTrue(l.equals(m));
 	}
 
 }
