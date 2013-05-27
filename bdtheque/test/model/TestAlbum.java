@@ -92,6 +92,13 @@ public class TestAlbum {
 		assertTrue(c.equals(e));
 	}
 	@Test
+	public void test_hashcode(){
+		assertEquals(0, a.hashCode()-b.hashCode());
+		assertEquals(0, c.hashCode()-d.hashCode());
+		assertEquals(0, e.hashCode()-f.hashCode());
+		assertEquals(0, c.hashCode()-e.hashCode());
+	}
+	@Test
 	public void test_getAuteurs(){
 		assertEquals(forA, a.getAuteurs());
 		assertEquals(forE, e.getAuteurs());

@@ -18,8 +18,8 @@ public class TestBDT {
 	
 	BDT b;
 	TreeMap<String, Integer> lA, lS, lT, lG;
-	@Before
-	public void setup_liste(){
+	
+	public void setup_listeBase(){
 		b = new BDT();
 		Album a = new Album("Le secret de l'espadon", "Jacob", "Jacob", "Blake et Mortimer", 1);
 		b.ajouter(a);
@@ -47,12 +47,44 @@ public class TestBDT {
 		lT.put("L'énigme de l'Atlantide", 1);
 		lT.put("L'affaire Francis Blake", 1);
 		
+		lG = new TreeMap<String, Integer>();
+		
+		
 	}
 	@Test
-	public void test_liste(){
+	public void test_listeBase(){
+		setup_listeBase();
 		assertEquals(lA, b.getListeAuteurs());
 		assertEquals(lS, b.getListeSeries());
 		assertEquals(lT, b.getListeTitres());
+		assertEquals(lG, b.getListeGenres());
+	}
+	
+	public void setup_listeComp(){
+		b = new BDT();
+		Album a = new Album("Le Secret de l'Espadon", "Jacob", "Jacob", "Blake et Mortimer", 1, "Jacquart", "Le Belge", "aVentUre", "construire l'espadon", "trop  bien", 5, 50, 15);
+		b.ajouter(a);
+		
+		lA = new TreeMap<String, Integer>(); //listeAuteurs
+		lA.put("Jacob", 1);
+		lA.put("Jacquart", 1);
+		
+		lS = new TreeMap<String, Integer>();
+		lS.put("Blake et Mortimer", 1);
+		
+		lT = new TreeMap<String, Integer>();
+		lT.put("Le secret de l'espadon", 1);
+		
+		lG = new TreeMap<String, Integer>();
+		lG.put("Aventure", 1);
+	}
+	@Test
+	public void test_listeComp(){
+		setup_listeComp();
+		assertEquals(lA, b.getListeAuteurs());
+		assertEquals(lS, b.getListeSeries());
+		assertEquals(lT, b.getListeTitres());
+		assertEquals(lG, b.getListeGenres());
 	}
 
 }

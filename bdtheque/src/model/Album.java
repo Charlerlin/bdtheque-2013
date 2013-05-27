@@ -257,12 +257,12 @@ public class Album {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-		+ ((dessinateur == null) ? 0 : dessinateur.hashCode());
+		+ ((dessinateur == null) ? 0 : dessinateur.toLowerCase().hashCode());
 		result = prime * result + noserie;
 		result = prime * result
-		+ ((scenariste == null) ? 0 : scenariste.hashCode());
-		result = prime * result + ((serie == null) ? 0 : serie.hashCode());
-		result = prime * result + ((titre == null) ? 0 : titre.hashCode());
+		+ ((scenariste == null) ? 0 : scenariste.toLowerCase().hashCode());
+		result = prime * result + ((serie == null) ? 0 : serie.toLowerCase().hashCode());
+		result = prime * result + ((titre == null) ? 0 : titre.toLowerCase().hashCode());
 		return result;
 	}
 
