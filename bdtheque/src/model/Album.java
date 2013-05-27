@@ -11,7 +11,7 @@ import java.util.TreeSet;
  */
 
 public class Album {
-	private String titre, scenariste, dessinateur, coloriste, editeur, serie, genre, synopsis, commentaire;
+	private String titre, scenariste, dessinateur, serie, coloriste, editeur, genre, synopsis, commentaire;
 	private int noserie, note, nbplanches, prix;
 	// TODO ajouter l'illustration
 	/*il faut trouver une hiérarchie de fichiers pour stocker les illustrations, dans ce cas, 
@@ -19,10 +19,7 @@ public class Album {
 	 */
 
 	//---Constructeurs
-	public Album() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
 	/**
 	 * Construit un Album en donnant juste le titre et l'auteur, constructeur minimal
 	 * Les paramètres ne peuvent-être null ou vides
@@ -31,7 +28,10 @@ public class Album {
 	 * @param dessinateur
 	 * @throws IllegalArgumentException
 	 */
-	public Album(String titre, String scenariste, String dessinateur) throws IllegalArgumentException{
+	public Album(String titre, 
+			String scenariste, 
+			String dessinateur) 
+	throws IllegalArgumentException{
 		if(titre==null || titre.isEmpty())
 			throw new IllegalArgumentException("Titre vide");
 		else
@@ -58,8 +58,12 @@ public class Album {
 	 * @param noserie
 	 * @throws IllegalArgumentException
 	 */
-	public Album(String titre, String scenariste, String dessinateur, String serie, int noserie) 
-			throws IllegalArgumentException {
+	public Album(String titre, 
+			String scenariste, 
+			String dessinateur, 
+			String serie, 
+			int noserie) 
+	throws IllegalArgumentException {
 		this(titre, scenariste, dessinateur);
 		if(serie!=null && !serie.isEmpty()){
 			if(noserie==0)
@@ -72,7 +76,44 @@ public class Album {
 		else
 			throw new IllegalArgumentException("Série vide");
 	}
-	
+
+	/** Construit un album n'appartenant pas à une série, mais en fournissant les autres informations (optionnelles)
+	 * @param titre
+	 * @param scenariste
+	 * @param dessinateur
+	 * @param coloriste
+	 * @param editeur
+	 * @param genre
+	 * @param synopsis
+	 * @param commentaire
+	 * @param note
+	 * @param nbplanches
+	 * @param prix
+	 */
+	public Album(String titre, 
+			String scenariste, 
+			String dessinateur,
+			String coloriste, 
+			String editeur, 
+			String genre, 
+			String synopsis,
+			String commentaire, 
+			int note, 
+			int nbplanches, 
+			int prix) {
+		this(titre, scenariste, dessinateur);
+		this.serie = new String();
+		this.coloriste = nonNull(coloriste).trim();
+		this.editeur = nonNull(editeur).trim();
+		this.genre = nonNull(genre).trim();
+		this.synopsis = nonNull(synopsis).trim();
+		this.commentaire = nonNull(commentaire).trim();
+		this.note = note;
+		this.nbplanches = nbplanches;
+		this.prix = prix;
+		formaterGenre();
+	}
+
 	/**
 	 * Construit un Album en fournissant tous les paramètres
 	 * (cf autres constructeurs)
@@ -92,35 +133,53 @@ public class Album {
 	 * @param prix
 	 * @throws IllegalArgumentException
 	 */
-	public Album(String titre, String scenariste, String dessinateur, String coloriste, 
-			String editeur, String serie, String genre, String synopsis, String commentaire, 
-			int noserie, int note, int nbplanches, int prix) {
+	public Album(String titre, 
+			String scenariste, 
+			String dessinateur, 
+			String serie, 
+			int noserie, 
+			String coloriste, 
+			String editeur,  
+			String genre, 
+			String synopsis, 
+			String commentaire,  
+			int note, 
+			int nbplanches, 
+			int prix) {
 		this(titre, scenariste, dessinateur, serie, noserie);
-		this.coloriste = nonNull(coloriste.trim());
-		this.editeur = nonNull(editeur.trim());
-		this.genre = nonNull(genre.trim());
-		this.synopsis = nonNull(synopsis.trim());
-		this.commentaire = nonNull(commentaire.trim());
+		this.coloriste = nonNull(coloriste).trim();
+		this.editeur = nonNull(editeur).trim();
+		this.genre = nonNull(genre).trim();
+		this.synopsis = nonNull(synopsis).trim();
+		this.commentaire = nonNull(commentaire).trim();
 		this.note = note;
 		this.nbplanches = nbplanches;
 		this.prix = prix;
+		formaterGenre();
 	}
 	//----Fin constructeurs
-	
-	//----Static
+
+
 	/**
 	 * Garantit de ne pas avoir de String null, renvoie une String vide
 	 * @param s
-	 * @return String vide
+	 * @return String vide ou la String passée en paramètre, les espaces superflus en moins
 	 */
 	public String nonNull(String s){
-		if(s==null)
-			return new String("");
+		if(s == null)
+			return new String();
 		else
-			return s;
+			return s.trim();
 	}
-	//----Fin static
-	
+
+	private void formaterGenre(){
+		if(!genre.isEmpty())
+			genre = formaterAttribut(genre);
+	}
+	private String formaterAttribut(String s){
+		return s.substring(0,1).toUpperCase()+s.substring(1).toLowerCase();
+	}
+
 
 	//----Getters
 	public String getTitre() {
@@ -130,15 +189,15 @@ public class Album {
 	public String getScenariste() {
 		return scenariste;
 	}
-	
+
 	public String getDessinateur(){
 		return dessinateur;
 	}
-	
+
 	public String getColoriste(){
 		return coloriste;
 	}
-	
+
 	public TreeSet<String> getAuteurs(){
 		TreeSet<String> ret = new TreeSet<String>();
 		ret.add(scenariste);
@@ -151,7 +210,7 @@ public class Album {
 	public String getGenre() {
 		return genre;
 	}
-	
+
 	public String getSerie(){
 		return serie;
 	}
@@ -185,8 +244,8 @@ public class Album {
 	}
 	//----Fin getters
 
-	
-	
+
+
 
 	//-- HashCode & Equals
 
@@ -198,10 +257,10 @@ public class Album {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((dessinateur == null) ? 0 : dessinateur.hashCode());
+		+ ((dessinateur == null) ? 0 : dessinateur.hashCode());
 		result = prime * result + noserie;
 		result = prime * result
-				+ ((scenariste == null) ? 0 : scenariste.hashCode());
+		+ ((scenariste == null) ? 0 : scenariste.hashCode());
 		result = prime * result + ((serie == null) ? 0 : serie.hashCode());
 		result = prime * result + ((titre == null) ? 0 : titre.hashCode());
 		return result;
@@ -243,7 +302,7 @@ public class Album {
 			return false;
 		return true;
 	}
-	
+
 	//-- fin hashcode & equals
 
 }

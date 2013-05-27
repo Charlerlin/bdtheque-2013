@@ -49,7 +49,7 @@ public class TestAlbum {
 	}
 	//-- fin test constructeurs
 
-	private Album a, b, c, d, e, f, g, h, i, j, k, l, m; 
+	private Album a, b, c, d, e, f, g, h, i, j, k, l, m, n; 
 	private TreeSet<String> forA, forE, forG;
 
 	@Before
@@ -58,8 +58,8 @@ public class TestAlbum {
 		b = new Album("titre  ", "scenariste  ", "  dessinateur");
 		c = new Album("titre", "scenariste", "dessinateur", "serie", 1);
 		d = new Album("titre", "scenariste", "dessinateur", "serie", 1);
-		e = new Album("titre", "scenariste", "dessinateur", "coloriste", "editeur", "serie", "genre", "synopsis", "commentaire", 1, 5, 30, 15);
-		f = new Album("titre", "scenariste", "dessinateur", "coloriste1", "editeur2", "serie", "genre2", "synopsis2", "commentaire2", 1, 4, 29, 14);
+		e = new Album("titre", "scenariste", "dessinateur", "serie", 1, "coloriste", "editeur",  "genre", "synopsis", "commentaire", 5, 30, 15);
+		f = new Album("titre", "scenariste", "dessinateur", "serie", 1, "coloriste1", "editeur2", "genre2", "synopsis2", "commentaire2", 4, 29, 14);
 		forA = new TreeSet<String>();
 		forA.add("scenariste");
 		forA.add("dessinateur");
@@ -67,19 +67,21 @@ public class TestAlbum {
 		forE.add("scenariste");
 		forE.add("dessinateur");
 		forE.add("coloriste");
-		
+
 		g = new Album("titre", "lememe", "lememe");
 		forG = new TreeSet<String>();
 		forG.add("lememe");
-		
+
 		h = new Album("TiTre", "SceNAriste", "DESSinateur");
 		i = new Album("titre", "scenariste", "dessinateur");
-		
+
 		j = new Album("TITRE", "SCENARISTE", "DESSINATEUR", "SERIE", 1);
 		k = new Album("titre", "scenariste", "dessinateur", "serie", 1);
+
+		l = new Album("TITRE", "SCENARiste", "DESSinateur", "SERie", 1, "COLOriste", "EDIteur", "GENre", "SYNOPsis", "COMMentaire", 4, 29, 14);
+		m = new Album("titre", "scenariste", "dessinateur", "serie", 1, "coloriste1", "editeur2", "genre2", "synopsis2", "commentaire2", 4, 29, 14);
 		
-		l = new Album("TITRE", "SCENARiste", "DESSinateur", "COLOriste", "EDIteur", "SERie", "GENre", "SYNOPsis", "COMMentaire", 1, 4, 29, 14);
-		m = new Album("titre", "scenariste", "dessinateur", "coloriste1", "editeur2", "serie", "genre2", "synopsis2", "commentaire2", 1, 4, 29, 14);
+		n = new Album("titreA", "scenaristeA", "dessinateurA", null, null, null, null, null, 66, 66, 66);
 
 	}
 	@Test
@@ -100,6 +102,22 @@ public class TestAlbum {
 		assertTrue(h.equals(i));
 		assertTrue(j.equals(k));
 		assertTrue(l.equals(m));
+	}
+
+
+	@Test
+	public void test_attributsNonNuls(){
+		assertEquals("", n.getColoriste());
+		assertEquals("", n.getEditeur());
+		assertEquals("", n.getSerie());
+		assertEquals("", n.getGenre());
+		assertEquals("", n.getSynopsis());
+		assertEquals("", n.getCommentaire());
+	}
+	
+	@Test
+	public void test_formatGenre(){
+		assertEquals("Genre", l.getGenre());
 	}
 
 }
