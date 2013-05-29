@@ -1,11 +1,14 @@
 package model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestBDT {
@@ -122,6 +125,49 @@ public class TestBDT {
 		assertEquals(lS, b.getListeSeries());
 		assertEquals(lT, b.getListeTitres());
 		assertEquals(lG, b.getListeGenres());
+	}
+	
+	@Test
+	public void test_get_contains(){
+		Album a = new Album("L'énigme de l'Atlantide", "Jacob", "Jacob", "Blake et Mortimer", 4);
+		b = new BDT();
+		b.ajouter(a);
+		assertEquals(a, b.get(a.hashCode()));
+		assertTrue(b.contains(a));
+		assertTrue(b.contains(a.hashCode()));
+	}
+	
+	
+	TreeSet<Album> tsa;
+	@Before
+	public void setup_getBy(){
+		b = new BDT();
+		Album a1 = new Album("Le secret de l'espadon", "Jacob", "Jacob", "Blake et Mortimer", 1);
+		b.ajouter(a1);
+	
+		Album a2 = new Album("Le mystère de la grande Pyramide", "Jacob", "Jacob", "Blake et Mortimer", 2);
+		b.ajouter(a2);
+	
+		Album a3 = new Album("La Marque Jaune", "Jacob", "Jacob", "Blake et Mortimer", 3);
+		b.ajouter(a3);
+		
+		Album a4 = new Album("L'énigme de l'Atlantide", "Jacob", "Jacob", "Blake et Mortimer", 4);
+		b.ajouter(a4);
+
+		Album a5 = new Album("L'affaire Francis Blake", "Jean Van Hamme", "Ted Benoit", "Blake et Mortimer", 9);
+		b.ajouter(a5);
+		
+		tsa = new TreeSet<Album>();
+		tsa.add(a3);
+		//tsa.add(a2);
+		//tsa.add(a1);
+		//tsa.add(a5);
+		//tsa.add(a4);
+
+	}
+	@Test
+	public void test_getBy(){
+		assertEquals(b.getByTitre("La Marque Jaune"), b.getByTitre("La Marque Jaune"));
 	}
 
 }

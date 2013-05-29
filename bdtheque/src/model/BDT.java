@@ -16,6 +16,15 @@ public class BDT {
 		listeGenres = new TreeMap<String, TreeSet<Integer>>();
 	}
 
+	public boolean isEmpty(){
+		return listeAlbums.isEmpty();
+	}
+	public int size(){
+		return listeAlbums.size();
+	}
+	public boolean contains(int hc){
+		return listeAlbums.containsKey(hc);
+	}
 	public boolean contains(Album a){
 		return listeAlbums.containsKey(a.hashCode());
 	}
@@ -34,6 +43,12 @@ public class BDT {
 			return true;
 		}
 	}
+
+	public Album get(int hc){
+		return listeAlbums.get(hc);
+	}
+
+
 
 	private void gestionIndexAjout(Album a, String idx){
 		if(idx.equals("titre")){
@@ -79,7 +94,7 @@ public class BDT {
 			}
 		}
 	}
-	
+
 	//-- GETTERS
 	public HashMap<Integer, Album> getListeAlbums(){
 		return listeAlbums;
@@ -100,7 +115,22 @@ public class BDT {
 	public TreeMap<String,TreeSet<Integer>> getListeGenres() {
 		return listeGenres;
 	}
-	
+
+	public TreeSet<Album> getByTitre(String s){
+		s = s.trim();
+		TreeSet<Album> ret = new TreeSet<Album>();
+		if(!listeTitres.containsKey(s)){
+			return ret;
+		}
+		else{
+			TreeSet<Integer> tmp = listeTitres.get(s);
+			for(int i : tmp){
+				ret.add(listeAlbums.get(i));
+			}
+			return ret;
+		}
+	}
+
 	//-- fin getters
 
 
