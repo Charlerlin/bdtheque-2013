@@ -167,7 +167,7 @@ public class TestBDT {
 	}
 	@Test
 	public void test_getBy(){
-		assertEquals(b.getByTitre("La Marque Jaune"), b.getByTitre("La Marque Jaune"));
+		assertEquals(tsa, b.getByTitre("La Marque Jaune"));
 	}
 
 }
