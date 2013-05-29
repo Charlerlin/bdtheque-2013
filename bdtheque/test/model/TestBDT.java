@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class TestBDT {
@@ -17,37 +17,69 @@ public class TestBDT {
 	}
 	
 	BDT b;
-	TreeMap<String, Integer> lA, lS, lT, lG;
+	TreeMap<String, TreeSet<Integer>> lA, lS, lT, lG;
+	TreeSet<Integer> tsiJ, tsiJVH, tsiTB, tsiBM, tsiLSE, tsiLMP, tsiLMJ, tsiLEA, tsiLFB;
 	
 	public void setup_listeBase(){
 		b = new BDT();
+		
+		tsiJ = new TreeSet<Integer>(); //Jacob
+		tsiJVH = new TreeSet<Integer>(); //JVH
+		tsiTB = new TreeSet<Integer>(); //TB
+		tsiBM = new TreeSet<Integer>(); //Blake et Mortimer
+		tsiLSE = new TreeSet<Integer>(); //le secret de l'espadon
+		tsiLMP = new TreeSet<Integer>(); //le mystère de la grande pyramide
+		tsiLMJ = new TreeSet<Integer>(); //la marque jaune
+		tsiLEA = new TreeSet<Integer>(); //l'énigme de l'atlantide
+		tsiLFB = new TreeSet<Integer>(); //l'affaire Francis Blake
+		
 		Album a = new Album("Le secret de l'espadon", "Jacob", "Jacob", "Blake et Mortimer", 1);
 		b.ajouter(a);
+		tsiJ.add(a.hashCode());
+		tsiBM.add(a.hashCode());
+		tsiLSE.add(a.hashCode());
+		
 		a = new Album("Le mystère de la grande Pyramide", "Jacob", "Jacob", "Blake et Mortimer", 2);
 		b.ajouter(a);
+		tsiJ.add(a.hashCode());
+		tsiBM.add(a.hashCode());
+		tsiLMP.add(a.hashCode());
+		
 		a = new Album("La Marque Jaune", "Jacob", "Jacob", "Blake et Mortimer", 3);
 		b.ajouter(a);
+		tsiJ.add(a.hashCode());
+		tsiBM.add(a.hashCode());
+		tsiLMJ.add(a.hashCode());
+		
 		a = new Album("L'énigme de l'Atlantide", "Jacob", "Jacob", "Blake et Mortimer", 4);
 		b.ajouter(a);
+		tsiJ.add(a.hashCode());
+		tsiBM.add(a.hashCode());
+		tsiLEA.add(a.hashCode());
+		
 		a = new Album("L'affaire Francis Blake", "Jean Van Hamme", "Ted Benoit", "Blake et Mortimer", 9);
 		b.ajouter(a);
+		tsiJVH.add(a.hashCode());
+		tsiTB.add(a.hashCode());
+		tsiBM.add(a.hashCode());
+		tsiLFB.add(a.hashCode());
 		
-		lA = new TreeMap<String, Integer>(); //listeAuteurs
-		lA.put("Jacob", 4);
-		lA.put("Jean Van Hamme", 1);
-		lA.put("Ted Benoit", 1);
+		lA = new TreeMap<String, TreeSet<Integer>>(); //listeAuteurs
+		lA.put("Jacob", tsiJ);
+		lA.put("Jean Van Hamme", tsiJVH);
+		lA.put("Ted Benoit", tsiTB);
 		
-		lS = new TreeMap<String, Integer>();
-		lS.put("Blake et Mortimer", 5);
+		lS = new TreeMap<String, TreeSet<Integer>>();
+		lS.put("Blake et Mortimer", tsiBM);
 		
-		lT = new TreeMap<String, Integer>();
-		lT.put("Le secret de l'espadon", 1);
-		lT.put("Le mystère de la grande Pyramide", 1);
-		lT.put("La Marque Jaune", 1);
-		lT.put("L'énigme de l'Atlantide", 1);
-		lT.put("L'affaire Francis Blake", 1);
+		lT = new TreeMap<String, TreeSet<Integer>>();
+		lT.put("Le secret de l'espadon", tsiLSE);
+		lT.put("Le mystère de la grande Pyramide", tsiLMP);
+		lT.put("La Marque Jaune", tsiLMJ);
+		lT.put("L'énigme de l'Atlantide", tsiLEA);
+		lT.put("L'affaire Francis Blake", tsiLFB);
 		
-		lG = new TreeMap<String, Integer>();
+		lG = new TreeMap<String, TreeSet<Integer>>();
 		
 		
 	}
@@ -60,23 +92,28 @@ public class TestBDT {
 		assertEquals(lG, b.getListeGenres());
 	}
 	
+	TreeSet<Integer> tsi;
+	
 	public void setup_listeComp(){
 		b = new BDT();
 		Album a = new Album("Le Secret de l'Espadon", "Jacob", "Jacob", "Blake et Mortimer", 1, "Jacquart", "Le Belge", "aVentUre", "construire l'espadon", "trop  bien", 5, 50, 15);
 		b.ajouter(a);
 		
-		lA = new TreeMap<String, Integer>(); //listeAuteurs
-		lA.put("Jacob", 1);
-		lA.put("Jacquart", 1);
+		tsi = new TreeSet<Integer>();
+		tsi.add(a.hashCode());
 		
-		lS = new TreeMap<String, Integer>();
-		lS.put("Blake et Mortimer", 1);
+		lA = new TreeMap<String, TreeSet<Integer>>(); //listeAuteurs
+		lA.put("Jacob", tsi);
+		lA.put("Jacquart", tsi);
 		
-		lT = new TreeMap<String, Integer>();
-		lT.put("Le secret de l'espadon", 1);
+		lS = new TreeMap<String, TreeSet<Integer>>();
+		lS.put("Blake et Mortimer", tsi);
 		
-		lG = new TreeMap<String, Integer>();
-		lG.put("Aventure", 1);
+		lT = new TreeMap<String, TreeSet<Integer>>();
+		lT.put("Le Secret de l'Espadon", tsi);
+		
+		lG = new TreeMap<String, TreeSet<Integer>>();
+		lG.put("Aventure", tsi);
 	}
 	@Test
 	public void test_listeComp(){

@@ -2,17 +2,18 @@ package model;
 
 import java.util.HashMap;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class BDT {
 	private HashMap<Integer, Album> listeAlbums;
-	private TreeMap<String, Integer> listeTitres, listeSeries, listeAuteurs, listeGenres;
+	private TreeMap<String, TreeSet<Integer>> listeTitres, listeSeries, listeAuteurs, listeGenres;
 
 	public BDT(){
 		listeAlbums = new HashMap<Integer, Album>();
-		listeTitres = new TreeMap<String, Integer>();
-		listeAuteurs = new TreeMap<String, Integer>();
-		listeSeries = new TreeMap<String, Integer>();
-		listeGenres = new TreeMap<String, Integer>();
+		listeTitres = new TreeMap<String, TreeSet<Integer>>();
+		listeAuteurs = new TreeMap<String, TreeSet<Integer>>();
+		listeSeries = new TreeMap<String, TreeSet<Integer>>();
+		listeGenres = new TreeMap<String, TreeSet<Integer>>();
 	}
 
 	public boolean contains(Album a){
@@ -37,40 +38,44 @@ public class BDT {
 	private void gestionIndexAjout(Album a, String idx){
 		if(idx.equals("titre")){
 			if(listeTitres.containsKey(a.getTitre())){
-				int nbTitres = listeTitres.remove(a.getTitre()); //nombre d'albums ayant ce titre
-				listeTitres.put(a.getTitre(), ++nbTitres);
+				listeTitres.get(a.getTitre()).add(a.hashCode());
 			}
 			else{
-				listeTitres.put(a.getTitre(), 1);
+				TreeSet<Integer> tsi = new TreeSet<Integer>();
+				tsi.add(a.hashCode());
+				listeTitres.put(a.getTitre(), tsi);
 			}
 		}
 		if(idx.equals("serie")){
 			if(listeSeries.containsKey(a.getSerie())){
-				int nbSerie = listeSeries.remove(a.getSerie()); //nombre d'albums dans la série
-				listeSeries.put(a.getSerie(), ++nbSerie);
+				listeSeries.get(a.getSerie()).add(a.hashCode());
 			}
 			else{
-				listeSeries.put(a.getSerie(), 1);
+				TreeSet<Integer> tsi = new TreeSet<Integer>();
+				tsi.add(a.hashCode());
+				listeSeries.put(a.getSerie(), tsi);
 			}
 		}
 		if(idx.equals("auteurs")){
 			for(String aut : a.getAuteurs()){
 				if(listeAuteurs.containsKey(aut)){
-					int nbAuteurs = listeAuteurs.remove(aut); //nombre d'albums correspondants à cet auteur
-					listeAuteurs.put(aut, ++nbAuteurs);
+					listeAuteurs.get(aut).add(a.hashCode());
 				}
 				else{
-					listeAuteurs.put(aut, 1);
+					TreeSet<Integer> tsi = new TreeSet<Integer>();
+					tsi.add(a.hashCode());
+					listeAuteurs.put(aut, tsi);
 				}
 			}
 		}
 		if(idx.equals("genre")){
 			if(listeGenres.containsKey(a.getTitre())){
-				int nbGenres = listeGenres.remove(a.getGenre()); //nombre d'albums de ce genre
-				listeGenres.put(a.getGenre(), ++nbGenres);
+				listeGenres.get(a.getGenre()).add(a.hashCode());
 			}
 			else{
-				listeGenres.put(a.getGenre(), 1);
+				TreeSet<Integer> tsi = new TreeSet<Integer>();
+				tsi.add(a.hashCode());
+				listeGenres.put(a.getGenre(), tsi);
 			}
 		}
 	}
@@ -80,19 +85,19 @@ public class BDT {
 		return listeAlbums;
 	}
 
-	public TreeMap<String, Integer> getListeTitres() {
+	public TreeMap<String,TreeSet<Integer>> getListeTitres() {
 		return listeTitres;
 	}
 
-	public TreeMap<String, Integer> getListeSeries() {
+	public TreeMap<String,TreeSet<Integer>> getListeSeries() {
 		return listeSeries;
 	}
 
-	public TreeMap<String, Integer> getListeAuteurs() {
+	public TreeMap<String,TreeSet<Integer>> getListeAuteurs() {
 		return listeAuteurs;
 	}
 
-	public TreeMap<String, Integer> getListeGenres() {
+	public TreeMap<String,TreeSet<Integer>> getListeGenres() {
 		return listeGenres;
 	}
 	
