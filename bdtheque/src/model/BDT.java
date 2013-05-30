@@ -29,7 +29,7 @@ public class BDT {
 		return listeAlbums.containsKey(a.hashCode());
 	}
 
-	public boolean ajouter(Album a){
+	public boolean add(Album a){
 		if(contains(a))
 			return false;
 		else{
@@ -91,6 +91,50 @@ public class BDT {
 				TreeSet<Integer> tsi = new TreeSet<Integer>();
 				tsi.add(a.hashCode());
 				listeGenres.put(a.getGenre(), tsi);
+			}
+		}
+	}
+	
+	public boolean remove(Album a){
+		if(!contains(a))
+			return false;
+		else{
+			listeAlbums.remove(a.hashCode());
+			gestionIndexSupp(a, "titre");
+			gestionIndexSupp(a, "auteurs");
+			if(!a.getSerie().isEmpty())
+				gestionIndexSupp(a, "serie");
+			if(!a.getGenre().isEmpty())
+				gestionIndexSupp(a, "genre");
+			return true;
+		}
+	}
+	
+	public void gestionIndexSupp(Album a, String idx){
+		if(idx.equals("titre")){
+			listeTitres.get(a.getTitre()).remove(a.hashCode());
+			if (listeTitres.get(a.getTitre()).isEmpty()) {
+				listeTitres.remove(a.getTitre());
+			}
+		}
+		if(idx.equals("serie")){
+			listeSeries.get(a.getSerie()).remove(a.hashCode());
+			if (listeSeries.get(a.getSerie()).isEmpty()) {
+				listeSeries.remove(a.getSerie());
+			}
+		}
+		if(idx.equals("auteurs")){
+			for(String aut : a.getAuteurs()){
+				listeAuteurs.get(aut).remove(a.hashCode());
+				if (listeAuteurs.get(aut).isEmpty()) {
+					listeAuteurs.remove(a.getSerie());
+				}
+			}
+		}
+		if(idx.equals("genre")){
+			listeGenres.get(a.getGenre()).remove(a.hashCode());
+			if (listeGenres.get(a.getGenre()).isEmpty()) {
+				listeGenres.remove(a.getGenre());
 			}
 		}
 	}

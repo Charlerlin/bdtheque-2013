@@ -37,31 +37,31 @@ public class TestBDT {
 		tsiLFB = new TreeSet<Integer>(); //l'affaire Francis Blake
 		
 		Album a = new Album("Le secret de l'espadon", "Jacob", "Jacob", "Blake et Mortimer", 1);
-		b.ajouter(a);
+		b.add(a);
 		tsiJ.add(a.hashCode());
 		tsiBM.add(a.hashCode());
 		tsiLSE.add(a.hashCode());
 		
 		a = new Album("Le mystère de la grande Pyramide", "Jacob", "Jacob", "Blake et Mortimer", 2);
-		b.ajouter(a);
+		b.add(a);
 		tsiJ.add(a.hashCode());
 		tsiBM.add(a.hashCode());
 		tsiLMP.add(a.hashCode());
 		
 		a = new Album("La Marque Jaune", "Jacob", "Jacob", "Blake et Mortimer", 3);
-		b.ajouter(a);
+		b.add(a);
 		tsiJ.add(a.hashCode());
 		tsiBM.add(a.hashCode());
 		tsiLMJ.add(a.hashCode());
 		
 		a = new Album("L'énigme de l'Atlantide", "Jacob", "Jacob", "Blake et Mortimer", 4);
-		b.ajouter(a);
+		b.add(a);
 		tsiJ.add(a.hashCode());
 		tsiBM.add(a.hashCode());
 		tsiLEA.add(a.hashCode());
 		
 		a = new Album("L'affaire Francis Blake", "Jean Van Hamme", "Ted Benoit", "Blake et Mortimer", 9);
-		b.ajouter(a);
+		b.add(a);
 		tsiJVH.add(a.hashCode());
 		tsiTB.add(a.hashCode());
 		tsiBM.add(a.hashCode());
@@ -100,7 +100,7 @@ public class TestBDT {
 	public void setup_listeComp(){
 		b = new BDT();
 		Album a = new Album("Le Secret de l'Espadon", "Jacob", "Jacob", "Blake et Mortimer", 1, "Jacquart", "Le Belge", "aVentUre", "construire l'espadon", "trop  bien", 5, 50, 15);
-		b.ajouter(a);
+		b.add(a);
 		
 		tsi = new TreeSet<Integer>();
 		tsi.add(a.hashCode());
@@ -131,7 +131,7 @@ public class TestBDT {
 	public void test_get_contains(){
 		Album a = new Album("L'énigme de l'Atlantide", "Jacob", "Jacob", "Blake et Mortimer", 4);
 		b = new BDT();
-		b.ajouter(a);
+		b.add(a);
 		assertEquals(a, b.get(a.hashCode()));
 		assertTrue(b.contains(a));
 		assertTrue(b.contains(a.hashCode()));
@@ -143,19 +143,19 @@ public class TestBDT {
 	public void setup_getBy(){
 		b = new BDT();
 		Album a1 = new Album("Le secret de l'espadon", "Jacob", "Jacob", "Blake et Mortimer", 1);
-		b.ajouter(a1);
+		b.add(a1);
 	
 		Album a2 = new Album("Le mystère de la grande Pyramide", "Jacob", "Jacob", "Blake et Mortimer", 2);
-		b.ajouter(a2);
+		b.add(a2);
 	
 		Album a3 = new Album("La Marque Jaune", "Jacob", "Jacob", "Blake et Mortimer", 3);
-		b.ajouter(a3);
+		b.add(a3);
 		
 		Album a4 = new Album("L'énigme de l'Atlantide", "Jacob", "Jacob", "Blake et Mortimer", 4);
-		b.ajouter(a4);
+		b.add(a4);
 
 		Album a5 = new Album("L'affaire Francis Blake", "Jean Van Hamme", "Ted Benoit", "Blake et Mortimer", 9);
-		b.ajouter(a5);
+		b.add(a5);
 		
 		tsa = new TreeSet<Album>();
 		tsa.add(a3);
