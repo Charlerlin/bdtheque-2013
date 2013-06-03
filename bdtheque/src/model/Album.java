@@ -241,14 +241,68 @@ public class Album {
 
 	public int getPrix() {
 		return prix;
-	}
+	}	
+	
 	//----Fin getters
 
+	//-- setters
+	protected void setTitre(String titre) {
+		this.titre = titre;
+	}
 
+	protected void setScenariste(String scenariste) {
+		this.scenariste = scenariste;
+	}
+
+	protected void setDessinateur(String dessinateur) {
+		this.dessinateur = dessinateur;
+	}
+
+	protected void setSerie(String serie) {
+		this.serie = serie;
+	}
+
+	protected void setColoriste(String coloriste) {
+		this.coloriste = coloriste;
+	}
+
+	protected void setEditeur(String editeur) {
+		this.editeur = editeur;
+	}
+
+	protected void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	protected void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+
+	protected void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+
+	protected void setNoserie(int noserie) {
+		this.noserie = noserie;
+	}
+
+	protected void setNote(int note) {
+		this.note = note;
+	}
+
+	protected void setNbplanches(int nbplanches) {
+		this.nbplanches = nbplanches;
+	}
+
+	protected void setPrix(int prix) {
+		this.prix = prix;
+	}
+	//-- fin setters
 
 
 	//-- HashCode & Equals
 
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -265,6 +319,8 @@ public class Album {
 		result = prime * result + ((titre == null) ? 0 : titre.toLowerCase().hashCode());
 		return result;
 	}
+
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)

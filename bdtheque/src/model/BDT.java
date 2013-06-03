@@ -138,6 +138,68 @@ public class BDT {
 			}
 		}
 	}
+	
+	/** Effectue la modification d'un album en mettant à jour les index
+	 * @param a album concerné
+	 * @param idx champ concerné
+	 * @param st nouvelle valeur String
+	 * @param nb nouvelle valeur numérique
+	 */
+	public void updateAlbum(Album a, String idx, String st, int nb){
+		if(idx.equals("titre")){
+			gestionIndexSupp(a, idx);
+			a.setTitre(st);
+			gestionIndexAjout(a, idx);
+		}
+		if(idx.equals("scenariste")){
+			gestionIndexSupp(a, "auteurs");
+			a.setScenariste(st);
+			gestionIndexAjout(a, "auteurs");
+		}
+		if(idx.equals("dessinateur")){
+			gestionIndexSupp(a, "auteurs");
+			a.setDessinateur(st);
+			gestionIndexAjout(a, "auteurs");
+		}
+		if(idx.equals("serie")){
+			gestionIndexSupp(a, idx);
+			a.setSerie(st);
+			gestionIndexAjout(a, idx);
+		}
+		if(idx.equals("noserie")){
+			if(!a.getSerie().isEmpty())
+				a.setNoserie(nb);
+		}
+		if(idx.equals("coloriste")){
+			gestionIndexSupp(a, "auteurs");
+			a.setColoriste(st);
+			gestionIndexAjout(a, "auteurs");
+		}
+		if(idx.equals("genre")){
+			gestionIndexSupp(a, idx);
+			a.setGenre(st);
+			gestionIndexAjout(a, idx);
+		}
+		if(idx.equals("editeur")){
+			a.setEditeur(st);
+		}
+		if(idx.equals("synopsis")){
+			a.setSynopsis(st);
+		}
+		if(idx.equals("commentaire")){
+			a.setCommentaire(st);
+		}
+		if(idx.equals("note")){
+			a.setNote(nb);
+		}
+		if(idx.equals("nbplanches")){
+			a.setNbplanches(nb);
+		}
+		if(idx.equals("prix")){
+			a.setPrix(nb);
+		}
+		
+	}
 
 	//-- GETTERS
 	public HashMap<Integer, Album> getListeAlbums(){
