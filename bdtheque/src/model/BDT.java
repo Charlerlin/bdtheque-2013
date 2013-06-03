@@ -110,7 +110,7 @@ public class BDT {
 		}
 	}
 	
-	public void gestionIndexSupp(Album a, String idx){
+	private void gestionIndexSupp(Album a, String idx){
 		if(idx.equals("titre")){
 			listeTitres.get(a.getTitre()).remove(a.hashCode());
 			if (listeTitres.get(a.getTitre()).isEmpty()) {

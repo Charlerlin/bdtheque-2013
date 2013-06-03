@@ -169,5 +169,71 @@ public class TestBDT {
 	public void test_getBy(){
 		assertEquals(tsa, b.getByTitre("La Marque Jaune"));
 	}
+	
+	public void setup_remove(){
+		b = new BDT();
+		
+		tsiJ = new TreeSet<Integer>(); //Jacob
+		tsiJVH = new TreeSet<Integer>(); //JVH
+		tsiTB = new TreeSet<Integer>(); //TB
+		tsiBM = new TreeSet<Integer>(); //Blake et Mortimer
+		tsiLSE = new TreeSet<Integer>(); //le secret de l'espadon
+		tsiLMP = new TreeSet<Integer>(); //le mystère de la grande pyramide
+		tsiLMJ = new TreeSet<Integer>(); //la marque jaune
+		tsiLEA = new TreeSet<Integer>(); //l'énigme de l'atlantide
+		tsiLFB = new TreeSet<Integer>(); //l'affaire Francis Blake
+		
+		Album a = new Album("Le secret de l'espadon", "Jacob", "Jacob", "Blake et Mortimer", 1);
+		b.add(a);
+		tsiJ.add(a.hashCode());
+		tsiBM.add(a.hashCode());
+		tsiLSE.add(a.hashCode());
+		
+		a = new Album("Le mystère de la grande Pyramide", "Jacob", "Jacob", "Blake et Mortimer", 2);
+		b.add(a);
+		tsiJ.add(a.hashCode());
+		tsiBM.add(a.hashCode());
+		tsiLMP.add(a.hashCode());
+		
+		a = new Album("La Marque Jaune", "Jacob", "Jacob", "Blake et Mortimer", 3);
+		b.add(a);
+		tsiJ.add(a.hashCode());
+		tsiBM.add(a.hashCode());
+		tsiLMJ.add(a.hashCode());
+		
+		a = new Album("L'énigme de l'Atlantide", "Jacob", "Jacob", "Blake et Mortimer", 4);
+		b.add(a);
+
+		b.remove(a);
+		
+		a = new Album("L'affaire Francis Blake", "Jean Van Hamme", "Ted Benoit", "Blake et Mortimer", 9);
+		b.add(a);
+		tsiJVH.add(a.hashCode());
+		tsiTB.add(a.hashCode());
+		tsiBM.add(a.hashCode());
+		tsiLFB.add(a.hashCode());
+		
+		lA = new TreeMap<String, TreeSet<Integer>>(); //listeAuteurs
+		lA.put("Jacob", tsiJ);
+		lA.put("Jean Van Hamme", tsiJVH);
+		lA.put("Ted Benoit", tsiTB);
+		
+		lS = new TreeMap<String, TreeSet<Integer>>();
+		lS.put("Blake et Mortimer", tsiBM);
+		
+		lT = new TreeMap<String, TreeSet<Integer>>();
+		lT.put("Le secret de l'espadon", tsiLSE);
+		lT.put("Le mystère de la grande Pyramide", tsiLMP);
+		lT.put("La Marque Jaune", tsiLMJ);
+		lT.put("L'affaire Francis Blake", tsiLFB);
+	}
+	@Test
+	public void test_remove(){
+		setup_remove();
+		assertEquals(lA, b.getListeAuteurs());
+		assertEquals(lS, b.getListeSeries());
+		assertEquals(lT, b.getListeTitres());
+		//assertEquals(lG, b.getListeGenres());
+	}
 
 }
