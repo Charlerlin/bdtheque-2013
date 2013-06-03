@@ -94,7 +94,7 @@ public class BDT {
 			}
 		}
 	}
-	
+
 	public boolean remove(Album a){
 		if(!contains(a))
 			return false;
@@ -109,7 +109,7 @@ public class BDT {
 			return true;
 		}
 	}
-	
+
 	private void gestionIndexSupp(Album a, String idx){
 		if(idx.equals("titre")){
 			listeTitres.get(a.getTitre()).remove(a.hashCode());
@@ -138,67 +138,101 @@ public class BDT {
 			}
 		}
 	}
-	
+
 	/** Effectue la modification d'un album en mettant à jour les index
 	 * @param a album concerné
 	 * @param idx champ concerné
-	 * @param st nouvelle valeur String
-	 * @param nb nouvelle valeur numérique
+	 * @param val nouvelle valeur 
 	 */
-	public void updateAlbum(Album a, String idx, String st, int nb){
-		if(idx.equals("titre")){
-			gestionIndexSupp(a, idx);
-			a.setTitre(st);
-			gestionIndexAjout(a, idx);
+	public void updateAlbum(Album a, String idx, String val){
+		if(val!=null){
+			if(!val.isEmpty()){ //on ne va pas updater des champs d'index à vide !
+				if(idx.equals("titre")){
+					gestionIndexSupp(a, idx);
+					a.setTitre(val);
+					gestionIndexAjout(a, idx);
+				}
+				if(idx.equals("scenariste")){
+					gestionIndexSupp(a, "auteurs");
+					a.setScenariste(val);
+					gestionIndexAjout(a, "auteurs");
+				}
+				if(idx.equals("dessinateur")){
+					gestionIndexSupp(a, "auteurs");
+					a.setDessinateur(val);
+					gestionIndexAjout(a, "auteurs");
+				}
+				if(idx.equals("serie")){
+					gestionIndexSupp(a, idx);
+					a.setSerie(val);
+					gestionIndexAjout(a, idx);
+				}
+				if(idx.equals("noserie")){
+					if(!a.getSerie().isEmpty()){
+						int nb;
+						try {
+							nb = Integer.parseInt(val);
+							a.setNoserie(nb);
+						} catch (Exception e) {
+
+						}
+					}
+				}
+				if(idx.equals("coloriste")){
+					gestionIndexSupp(a, "auteurs");
+					a.setColoriste(val);
+					gestionIndexAjout(a, "auteurs");
+				}
+				if(idx.equals("genre")){
+					gestionIndexSupp(a, idx);
+					a.setGenre(val);
+					gestionIndexAjout(a, idx);
+				}
+			}
+			if(idx.equals("editeur")){
+				a.setEditeur(val);
+			}
+			if(idx.equals("synopsis")){
+				a.setSynopsis(val);
+			}
+			if(idx.equals("commentaire")){
+				a.setCommentaire(val);
+			}
+			if(idx.equals("note")){
+				if(!a.getSerie().isEmpty()){
+					int nb;
+					try {
+						nb = Integer.parseInt(val);
+						a.setNote(nb);
+					} catch (Exception e) {
+
+					}
+				}
+			}
+			if(idx.equals("nbplanches")){
+				if(!a.getSerie().isEmpty()){
+					int nb;
+					try {
+						nb = Integer.parseInt(val);
+						a.setNbplanches(nb);
+					} catch (Exception e) {
+
+					}
+				}
+			}
+			if(idx.equals("prix")){
+				if(!a.getSerie().isEmpty()){
+					int nb;
+					try {
+						nb = Integer.parseInt(val);
+						a.setPrix(nb);
+					} catch (Exception e) {
+
+					}
+				}
+			}
 		}
-		if(idx.equals("scenariste")){
-			gestionIndexSupp(a, "auteurs");
-			a.setScenariste(st);
-			gestionIndexAjout(a, "auteurs");
-		}
-		if(idx.equals("dessinateur")){
-			gestionIndexSupp(a, "auteurs");
-			a.setDessinateur(st);
-			gestionIndexAjout(a, "auteurs");
-		}
-		if(idx.equals("serie")){
-			gestionIndexSupp(a, idx);
-			a.setSerie(st);
-			gestionIndexAjout(a, idx);
-		}
-		if(idx.equals("noserie")){
-			if(!a.getSerie().isEmpty())
-				a.setNoserie(nb);
-		}
-		if(idx.equals("coloriste")){
-			gestionIndexSupp(a, "auteurs");
-			a.setColoriste(st);
-			gestionIndexAjout(a, "auteurs");
-		}
-		if(idx.equals("genre")){
-			gestionIndexSupp(a, idx);
-			a.setGenre(st);
-			gestionIndexAjout(a, idx);
-		}
-		if(idx.equals("editeur")){
-			a.setEditeur(st);
-		}
-		if(idx.equals("synopsis")){
-			a.setSynopsis(st);
-		}
-		if(idx.equals("commentaire")){
-			a.setCommentaire(st);
-		}
-		if(idx.equals("note")){
-			a.setNote(nb);
-		}
-		if(idx.equals("nbplanches")){
-			a.setNbplanches(nb);
-		}
-		if(idx.equals("prix")){
-			a.setPrix(nb);
-		}
-		
+
 	}
 
 	//-- GETTERS
@@ -224,9 +258,9 @@ public class BDT {
 
 	//-- fin getters
 
-	
+
 	//-- getters recherche
-	
+
 	public TreeSet<Integer> getByTitre(String s){
 		s = s.trim();
 		TreeSet<Integer> ret = new TreeSet<Integer>();
@@ -241,7 +275,7 @@ public class BDT {
 			return ret;
 		}
 	}
-	
+
 	//-- fin getters recherche
 
 }
