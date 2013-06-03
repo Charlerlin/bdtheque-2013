@@ -3,7 +3,6 @@ package model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -138,7 +137,7 @@ public class TestBDT {
 	}
 	
 	
-	TreeSet<Album> tsa;
+	TreeSet<Integer> tshc;
 	@Before
 	public void setup_getBy(){
 		b = new BDT();
@@ -157,17 +156,17 @@ public class TestBDT {
 		Album a5 = new Album("L'affaire Francis Blake", "Jean Van Hamme", "Ted Benoit", "Blake et Mortimer", 9);
 		b.add(a5);
 		
-		tsa = new TreeSet<Album>();
-		tsa.add(a3);
-		//tsa.add(a2);
-		//tsa.add(a1);
-		//tsa.add(a5);
-		//tsa.add(a4);
+		tshc = new TreeSet<Integer>();
+		tshc.add(a3.hashCode());
+		//tshc.add(a2.hashCode());
+		//tshc.add(a1.hashCode());
+		//tshc.add(a5.hashCode());
+		//tshc.add(a4.hashCode());
 
 	}
 	@Test
 	public void test_getBy(){
-		assertEquals(tsa, b.getByTitre("La Marque Jaune"));
+		assertEquals(tshc, b.getByTitre("La Marque Jaune"));
 	}
 	
 	public void setup_remove(){

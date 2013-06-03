@@ -160,22 +160,26 @@ public class BDT {
 		return listeGenres;
 	}
 
-	public TreeSet<Album> getByTitre(String s){
+	//-- fin getters
+
+	
+	//-- getters recherche
+	
+	public TreeSet<Integer> getByTitre(String s){
 		s = s.trim();
-		TreeSet<Album> ret = new TreeSet<Album>();
+		TreeSet<Integer> ret = new TreeSet<Integer>();
 		if(!listeTitres.containsKey(s)){
 			return ret;
 		}
 		else{
 			TreeSet<Integer> tmp = listeTitres.get(s);
 			for(int i : tmp){
-				ret.add(listeAlbums.get(i));
+				ret.add(listeAlbums.get(i).hashCode());
 			}
 			return ret;
 		}
 	}
-
-	//-- fin getters
-
+	
+	//-- fin getters recherche
 
 }
