@@ -62,7 +62,7 @@ public class TestBDT {
 	
 	public void setup_listeComp(){
 		b = new BDT();
-		Album a = new Album("Le Secret de l'Espadon", "Jacob", "Jacob", "Blake et Mortimer", 1, "Jacquart", "Le Belge", "aVentUre", "construire l'espadon", "trop  bien", 5, 50, 15);
+		Album a = new Album("Le secret de l'espadon", "Jacob", "Jacob", "Blake et Mortimer", 1, "Jacquart", "Le Belge", "aVentUre", "construire l'espadon", "trop  bien", 5, 50, 15);
 		b.ajouter(a);
 		
 		lA = new TreeMap<String, Integer>(); //listeAuteurs
