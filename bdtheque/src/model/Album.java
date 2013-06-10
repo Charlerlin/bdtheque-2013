@@ -241,14 +241,68 @@ public class Album {
 
 	public int getPrix() {
 		return prix;
-	}
+	}	
+	
 	//----Fin getters
 
+	//-- setters
+	protected void setTitre(String titre) {
+		this.titre = titre;
+	}
 
+	protected void setScenariste(String scenariste) {
+		this.scenariste = scenariste;
+	}
+
+	protected void setDessinateur(String dessinateur) {
+		this.dessinateur = dessinateur;
+	}
+
+	protected void setSerie(String serie) {
+		this.serie = serie;
+	}
+
+	protected void setColoriste(String coloriste) {
+		this.coloriste = coloriste;
+	}
+
+	protected void setEditeur(String editeur) {
+		this.editeur = editeur;
+	}
+
+	protected void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	protected void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+
+	protected void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+
+	protected void setNoserie(int noserie) {
+		this.noserie = noserie;
+	}
+
+	protected void setNote(int note) {
+		this.note = note;
+	}
+
+	protected void setNbplanches(int nbplanches) {
+		this.nbplanches = nbplanches;
+	}
+
+	protected void setPrix(int prix) {
+		this.prix = prix;
+	}
+	//-- fin setters
 
 
 	//-- HashCode & Equals
 
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -266,6 +320,8 @@ public class Album {
 		return result;
 	}
 
+	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
@@ -281,24 +337,24 @@ public class Album {
 		if (dessinateur == null) {
 			if (other.dessinateur != null)
 				return false;
-		} else if (!dessinateur.equalsIgnoreCase(other.dessinateur.toLowerCase()))
+		} else if (!dessinateur.equalsIgnoreCase(other.dessinateur))
 			return false;
 		if (noserie != other.noserie)
 			return false;
 		if (scenariste == null) {
 			if (other.scenariste != null)
 				return false;
-		} else if (!scenariste.equalsIgnoreCase(other.scenariste.toLowerCase()))
+		} else if (!scenariste.equalsIgnoreCase(other.scenariste))
 			return false;
 		if (serie == null) {
 			if (other.serie != null)
 				return false;
-		} else if (!serie.equalsIgnoreCase(other.serie.toLowerCase()))
+		} else if (!serie.equalsIgnoreCase(other.serie))
 			return false;
 		if (titre == null) {
 			if (other.titre != null)
 				return false;
-		} else if (!titre.equalsIgnoreCase(other.titre.toLowerCase()))
+		} else if (!titre.equalsIgnoreCase(other.titre))
 			return false;
 		return true;
 	}

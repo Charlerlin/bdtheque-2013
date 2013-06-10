@@ -1,17 +1,17 @@
 package view;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
-import javax.swing.*;
-
-import model.Album;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class VueAlbum extends JFrame{
 
 	private JTabbedPane panelOnglet;
 	private JPanel jp1 = new JPanel();
 	private JPanel jp2 = new JPanel();
-	private JLabel jl1 = new JLabel("Présentation");
+	private JLabel jl1 = new JLabel("Prï¿½sentation");
 	private JLabel jl2 = new JLabel("Editer");
 
 	public VueAlbum(){
@@ -19,7 +19,7 @@ public class VueAlbum extends JFrame{
 		panelOnglet = new JTabbedPane();
 		jp1.add(jl1);
 		jp2.add(jl2);
-		panelOnglet.addTab("Présentation", null, jp1);
+		panelOnglet.addTab("Prï¿½sentation", null, jp1);
 		panelOnglet.addTab("Editer", null, jp2);
 
 		class presentation_tab extends JPanel{     
@@ -30,14 +30,14 @@ public class VueAlbum extends JFrame{
 					setLayout(new GridLayout(3,3));
 					JLabel title = new JLabel("Titre");
 					JLabel auteur = new JLabel("Auteur");
-					JLabel série = new JLabel("Série");
+					JLabel serie = new JLabel("SÃ©rie");
 					JLabel date = new JLabel("Date");
 					JLabel genre = new JLabel("Genre");
 					JLabel editeur = new JLabel("Editeur");
 
 					add(title);
 					add(auteur);
-					add(série);
+					add(serie);
 					add(date);
 					add(genre);
 					add(editeur);
