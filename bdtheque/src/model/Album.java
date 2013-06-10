@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.TreeSet;
 
 /**
@@ -10,7 +11,7 @@ import java.util.TreeSet;
  *
  */
 
-public class Album {
+public class Album implements Comparable<Album>,Serializable{
 	private String titre, scenariste, dessinateur, serie, coloriste, editeur, genre, synopsis, commentaire;
 	private int noserie, note, nbplanches, prix;
 	// TODO ajouter l'illustration
@@ -46,6 +47,7 @@ public class Album {
 			this.dessinateur = dessinateur.trim();
 		coloriste = new String(); //ajout d'un coloriste vide pour la gestion d'index
 		genre = new String(); //ajout d'un genre vide pour le equals
+                serie = new String();
 	}
 
 	/**
@@ -358,6 +360,10 @@ public class Album {
 			return false;
 		return true;
 	}
+
+    public int compareTo(Album o) {
+       return this.hashCode() - o.hashCode();
+    }
 
 	//-- fin hashcode & equals
 
